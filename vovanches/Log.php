@@ -8,9 +8,14 @@ class Log extends \core\LogAbstract implements \core\LogInterface
 	}
 	public function _write() 
 	{
+		$d = new \DateTime();
+		$fileName = $d->format("d-m-Y\TH.i.s.u") . ".log";
+		$file = fopen("log/$fileName", "w+");
+	
 		foreach($this->log as $val) 
 		{
 			echo $val . "\n";
+			fwrite($file, $val . "\n");
 		}
 	}
 	public static function write() 

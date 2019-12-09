@@ -20,6 +20,10 @@ $c = $co_arr["c"];
 //vovanches\Log::log("Entered numbers: " . implode(", ", $co_arr));
 
 try {
+	$file = fopen("version", "r");
+	$version = fread($file, 1024);
+	vovanches\Log::log("Program version: $version");
+	
     vovanches\Log::log("Equation: $a*x^2 + $b*x + $c = 0");
     $solver = new vovanches\Quadratic($a, $b, $c);
     vovanches\Log::log("Roots: " . implode(", ", $solver->solve($a, $b, $c)));
